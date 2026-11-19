@@ -1,9 +1,10 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
-export default defineConfig(({ command }) => ({
-  // GitHub Pages serves this repo at /lorine/. Locally and on ngrok it stays "/".
-  base: command === "build" ? "/lorine/" : "/",
+// Base path: "/" by default (Vercel, localhost, ngrok).
+// The GitHub Pages workflow sets BASE_PATH=/lorine/ for its own build.
+export default defineConfig({
+  base: process.env.BASE_PATH || "/",
   plugins: [react()],
   server: {
     allowedHosts: [".ngrok-free.dev"],
@@ -13,4 +14,4 @@ export default defineConfig(({ command }) => ({
       clientPort: 443,
     },
   },
-}));
+});
