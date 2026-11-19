@@ -49,14 +49,16 @@ export const timeline = [
 ];
 
 // Put these files in: public/images/
-export const heroImage = "/images/hero.jpg";
+// BASE_URL is "/" locally and "/lorine/" on GitHub Pages (set in vite.config.js).
+const base = import.meta.env.BASE_URL;
+export const heroImage = `${base}images/hero.jpg`;
 export const galleryImages = [
-  "/images/img1.JPG",
-  "/images/img2.JPG",
-  "/images/img1.JPG",
-  "/images/img2.JPG",
-  "/images/img1.JPG",
-  "/images/img2.JPG",
+  `${base}images/img1.JPG`,
+  `${base}images/img2.JPG`,
+  `${base}images/img1.JPG`,
+  `${base}images/img2.JPG`,
+  `${base}images/img1.JPG`,
+  `${base}images/img2.JPG`,
 ];
 
 // Tap a wish on the Wishes page to send it on WhatsApp. Replace with your own.

@@ -1,7 +1,9 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
-export default defineConfig({
+export default defineConfig(({ command }) => ({
+  // GitHub Pages serves this repo at /lorine/. Locally and on ngrok it stays "/".
+  base: command === "build" ? "/lorine/" : "/",
   plugins: [react()],
   server: {
     allowedHosts: [".ngrok-free.dev"],
@@ -11,4 +13,4 @@ export default defineConfig({
       clientPort: 443,
     },
   },
-});
+}));
