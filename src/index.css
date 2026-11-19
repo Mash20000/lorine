@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply font-sans text-white antialiased;
+  background: linear-gradient(160deg, #2a1450 0%, #4a1d6e 45%, #6b2a7f 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overscroll-behavior-y: none;
+}
+
+@layer components {
+  .glass {
+    @apply border border-white/20 bg-white/10 backdrop-blur-xl;
+    box-shadow: 0 8px 32px rgba(30, 10, 60, 0.25),
+      inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  }
+  .glass-strong {
+    @apply border border-white/30 bg-white/15 backdrop-blur-2xl;
+    box-shadow: 0 10px 40px rgba(30, 10, 60, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  }
+  .section-title {
+    @apply font-display text-2xl font-semibold text-white sm:text-3xl;
+  }
+  .gradient-text {
+    background: linear-gradient(90deg, #f9c6ff, #ffd6e8, #e0c3ff, #f9c6ff);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .btn-glass {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold transition active:scale-95;
+  }
+}
+
+/* ---------- Gift box animations ---------- */
+@keyframes giftBob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+@keyframes giftShake {
+  0%, 100% { transform: rotate(0); }
+  15% { transform: rotate(-7deg); }
+  30% { transform: rotate(7deg); }
+  45% { transform: rotate(-5deg); }
+  60% { transform: rotate(5deg); }
+  75% { transform: rotate(0); }
+}
+@keyframes giftLid {
+  0% { transform: translate(-50%, 0) rotate(0); opacity: 1; }
+  100% { transform: translate(-50%, -90px) rotate(-18deg); opacity: 0; }
+}
+@keyframes giftRise {
+  0% { transform: translateY(70px) scale(0.5); opacity: 0; }
+  70% { transform: translateY(-6px) scale(1.04); opacity: 1; }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+@keyframes giftSpark {
+  0% { transform: scale(0) rotate(0); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: scale(1.5) rotate(160deg); opacity: 0; }
+}
+@keyframes giftRays {
+  0% { transform: translateX(-50%) rotate(0); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: translateX(-50%) rotate(360deg); opacity: 0.7; }
+}
+
+.gift-bob { animation: giftBob 3s ease-in-out infinite; }
+.gift-shake { animation: giftShake 0.7s ease-in-out both; }
+.gift-lid { animation: giftLid 0.6s ease-out 0.7s forwards; }
+.gift-rise { animation: giftRise 0.8s cubic-bezier(0.2, 0.9, 0.3, 1.2) 1.1s both; }
+.gift-spark { opacity: 0; animation: giftSpark 1.2s ease-out forwards; }
+.gift-rays {
+  background: conic-gradient(from 0deg, transparent 0 10%, rgba(249, 198, 255, 0.35) 12% 16%, transparent 18% 35%, rgba(255, 214, 232, 0.3) 37% 41%, transparent 43% 60%, rgba(224, 195, 255, 0.35) 62% 66%, transparent 68% 85%, rgba(249, 198, 255, 0.3) 87% 91%, transparent 93%);
+  -webkit-mask-image: radial-gradient(circle, #000 25%, transparent 70%);
+  mask-image: radial-gradient(circle, #000 25%, transparent 70%);
+  opacity: 0;
+  animation: giftRays 6s linear 0.8s forwards;
+}
